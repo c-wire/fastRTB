@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package fastrtb;
+
+option go_package = "github.com/c-wire/fastrtb";
+
+import "fastrtb/formats/search_context_ad.proto";
+import "fastrtb/formats/banner_ad.proto";
+
+message BidResponse {
+  string requestId = 1; // corresponding request ID from the BidRequest. This can be useful if streams are used 
+  // actaul hiararchy of the bids (if we sort them by impression or buyer or something else) is TBD
+  repeated Bid bids = 2;
+}
+
+message Bid {
+  string id = 1; // ID of the bid. should be UUIDv7
+  string impressionId = 2; // ID of the impression we are bidding on (there can be multiple bids for the same impression)
+  double bidPrice = 3; // cpm bid Price
+  oneof ad {
+    fastrtb.formats.BannerAd bannerAd = 4;
+    fastrtb.formats.SearchContextAd searchContextAd = 5;
+  }
+  string buyer = 6; 
+
+  Reporting reporting = 7; // this should be refactored into a standardized reporting endpoint to allow 3rd party reporting services
+  AdMetaData adMetaData = 8;
+}
+
+
+// used for ad quality schemes
+message AdMetaData {
+  string creativeId = 1;
+  string campaignId = 2;
+}
+
+message Reporting {
+  string winNoticeUrl = 1;
+  string billingNoticeUrl = 2;
+  string lossNoticeUrl = 3;
+}

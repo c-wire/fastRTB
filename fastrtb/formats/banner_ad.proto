@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package fastrtb.formats;
+
+option go_package = "github.com/c-wire/fastrtb/formats";
+
+message BannerAd {
+  string html = 1;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package fastrtb;
+
+option go_package = "github.com/c-wire/fastrtb";
+
+import "fastrtb/bid_request.proto";
+import "fastrtb/bid_response.proto";
+
+service BidService {
+    rpc GetBids(fastrtb.BidRequest) returns (fastrtb.BidResponse) {}
+}

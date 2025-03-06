@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package fastrtb.formats;
+
+option go_package = "github.com/c-wire/fastrtb/formats";
+
+import "fastrtb/formats/misc.proto";
+
+message BannerAdRequest {
+  repeated Size sizes = 1;
+}

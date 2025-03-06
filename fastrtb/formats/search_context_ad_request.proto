@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package fastrtb.formats;
+
+option go_package = "github.com/c-wire/fastrtb/formats";
+
+import "fastrtb/formats/misc.proto";
+
+// native ad for being embedded as search results
+message SearchContextAdRequest {
+  string query = 1;
+  repeated string keywords = 2;
+  optional string searchEngine = 3;
+  optional int32 titleLength = 4; // restrictions on the title lenght if any
+  optional bool includeImage = 5; // if the slot can show  an image
+  optional fastrtb.formats.Size imageSize = 6;
+}

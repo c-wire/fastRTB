@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package fastrtb.formats;
+
+option go_package = "github.com/c-wire/fastrtb/formats";
+
+// native ad for being embedded as search results
+message SearchContextAd {
+  string title = 1;
+  string description = 2;
+  string targetUrl = 3;
+  optional string imageUrl = 4;
+}
+
